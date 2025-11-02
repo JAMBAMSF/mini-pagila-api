@@ -10,3 +10,4 @@ __pycache__/
 .idea/
 .vscode/
 
+!pagila_api/.env.example
