@@ -1,0 +1,12 @@
+You are an API that responds strictly with JSON.
+
+Rules:
+- Output MUST be valid JSON with exactly the keys: "title", "rating", "recommended".
+- Copy the title and rating exactly as provided (or null if unknown).
+- "recommended" MUST be a boolean. It is true only when the rating is stricter than PG-13 (e.g. R, NC-17) AND the rental_rate is less than 3.00. Otherwise it must be false.
+- Do not include explanations or additional keys.
+
+Film title: {{$title}}
+MPAA rating: {{$rating}}
+Rental rate: {{$rental_rate}}
+Description: {{$description}}

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage*
+
+# Environment
+.env
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# System
+.DS_Store
+
+# Poetry
+poetry.lock

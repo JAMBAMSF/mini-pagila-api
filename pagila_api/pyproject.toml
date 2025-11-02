@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "pagila_api"
+version = "0.1.0"
+description = "Mini Pagila API (FastAPI + SQLModel + Semantic Kernel)"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.0"
+uvicorn = "^0.30.0"
+sqlmodel = "^0.0.21"
+SQLAlchemy = "^2.0.32"
+asyncpg = "^0.29.0"
+alembic = "^1.13.2"
+pydantic = "^2.8.2"
+pydantic-settings = "^2.4.0"
+python-dotenv = "^1.0.1"
+structlog = "^24.1.0"
+httpx = "^0.27.2"
+orjson = "^3.10.7"
+greenlet = "^3.0.3"
+openai = "^1.45.0"
+semantic-kernel = "0.9.0b1"
+aiosqlite = "^0.20.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+pytest-asyncio = "^0.23.7"
+mypy = "^1.11.1"
+ruff = "^0.6.4"
+black = "^24.8.0"
+pre-commit = "^3.8.0"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"

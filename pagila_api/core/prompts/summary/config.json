@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "description": "Summarise a Pagila film and decide if it should be recommended.",
+  "type": "completion",
+  "execution_settings": {
+    "default": {
+      "temperature": 0.2,
+      "max_tokens": 400,
+      "top_p": 0.9,
+      "response_format": {
+        "type": "json_object"
+      }
+    }
+  },
+  "input_variables": [
+    {
+      "name": "title",
+      "description": "Film title",
+      "required": true
+    },
+    {
+      "name": "description",
+      "description": "Film description",
+      "required": true
+    },
+    {
+      "name": "rating",
+      "description": "MPAA rating",
+      "required": true
+    },
+    {
+      "name": "rental_rate",
+      "description": "Rental price as decimal string",
+      "required": true
+    }
+  ]
+}
