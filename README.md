@@ -5,6 +5,15 @@ Mini Pagila API built with FastAPI + SQLModel + SQLAlchemy + Alembic, with optio
 - App code: `pagila_api/`
 - SQL dataset: `pagila_sql/`
 
+## What's Included
+
+- REST API: films listing, rental creation, pagination and filtering
+- Database: SQLModel/SQLAlchemy models, Alembic migrations, and Pagila SQL loader
+- AI Endpoints: streaming ask, structured film summary, and handoff orchestration
+- Semantic Kernel integration: OpenAI chat completions with prompt templating
+- Tests: pytest suite (6 tests) covering AI streaming, summary, and rentals
+- Tooling: Poetry, Ruff, Black, MyPy config
+
 ## Prerequisites
 
 - Python 3.11
