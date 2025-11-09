@@ -10,9 +10,9 @@ try:
     import pydantic.networks as _pydantic_networks
 
     if not hasattr(_pydantic_networks, "Url"):
-        _pydantic_networks.Url = AnyUrl  # type: ignore[attr-defined]
+        _pydantic_networks.Url = AnyUrl                              
 except Exception:
-    # Leave untouched if pydantic internals differ; Semantic Kernel will import if available.
+                                                                                             
     pass
 
 from semantic_kernel import Kernel
@@ -25,7 +25,7 @@ try:
     from semantic_kernel.functions.kernel_function_from_prompt import (
         kernel_function_from_prompt as _sk_kernel_function_from_prompt,
     )
-except ImportError:  # pragma: no cover
+except ImportError:                    
     _sk_kernel_function_from_prompt = None
 
 
@@ -43,8 +43,8 @@ def kernel_function_from_prompt(
         if template_value in (None, "") and prompt_template:
             try:
                 config_arg = config_arg.model_copy(update={"template": prompt_template})
-            except AttributeError:  # pragma: no cover - pydantic v1 fallback
-                config_arg = PromptTemplateConfig(**{**config_arg.model_dump(), "template": prompt_template})  # type: ignore[arg-type]
+            except AttributeError:                                           
+                config_arg = PromptTemplateConfig(**{**config_arg.model_dump(), "template": prompt_template})                          
             prompt_arg = None
 
     return KernelFunction.from_prompt(
@@ -104,7 +104,7 @@ Question: {{$question}}
     try:
         config = PromptTemplateConfig.model_validate(config_payload)
     except AttributeError:
-        config = PromptTemplateConfig.from_dict(config_payload)  # type: ignore[attr-defined]
+        config = PromptTemplateConfig.from_dict(config_payload)                              
     return kernel_function_from_prompt(
         prompt_template,
         config,
@@ -125,7 +125,7 @@ class FilmService:
         if film is None:
             raise NotFoundError("film", film_id)
         return FilmOut(
-            film_id=film.film_id,  # type: ignore[arg-type]
+            film_id=film.film_id,                          
             title=film.title,
             description=film.description,
             rating=film.rating,
@@ -174,13 +174,13 @@ class AIService:
         film_service: FilmService,
     ):
         self._kernel_provider = kernel_provider
-        summary_config = summary_prompt["config"]  # type: ignore[index]
+        summary_config = summary_prompt["config"]                       
         try:
             cfg = PromptTemplateConfig.model_validate(summary_config)
         except AttributeError:
-            cfg = PromptTemplateConfig.from_dict(summary_config)  # type: ignore[attr-defined]
+            cfg = PromptTemplateConfig.from_dict(summary_config)                              
         self._summary_prompt = kernel_function_from_prompt(
-            summary_prompt["template"],  # type: ignore[index]
+            summary_prompt["template"],                       
             cfg,
             plugin_name="ai",
             function_name="film_summary",
@@ -228,7 +228,7 @@ class AIService:
                         yield piece
             return
 
-        stream = await self._ask_prompt.invoke_stream_async(  # type: ignore[attr-defined]
+        stream = await self._ask_prompt.invoke_stream_async(                              
             kernel=kernel,
             arguments={"question": question},
             settings=settings,
@@ -245,9 +245,9 @@ class AIService:
 
         settings = PromptExecutionSettings(service_id="openai")
         try:
-            settings.extension_data["response_format"] = {"type": "json_object"}  # type: ignore[index]
+            settings.extension_data["response_format"] = {"type": "json_object"}                       
         except AttributeError:
-            # Older SK versions may not expose extension_data; allow prompt rules to enforce JSON.
+                                                                                                  
             pass
 
         invoke_callable = getattr(self._summary_prompt, "invoke", None)
@@ -258,7 +258,7 @@ class AIService:
                 **context,
             )
         else:
-            result = await self._summary_prompt.invoke_async(  # type: ignore[attr-defined]
+            result = await self._summary_prompt.invoke_async(                              
                 kernel=kernel,
                 arguments=context,
                 settings=settings,

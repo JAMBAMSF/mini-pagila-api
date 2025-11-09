@@ -10,13 +10,13 @@ from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlmodel import SQLModel
 
-# Ensure project root is on sys.path
+                                    
 BASE_DIR = Path(__file__).resolve().parents[1]
 if str(BASE_DIR) not in sys.path:
     sys.path.append(str(BASE_DIR))
 
-from core.config import get_settings  # noqa: E402
-from domain import models  # noqa: F401,E402  # import to register metadata
+from core.config import get_settings              
+from domain import models                                                  
 
 config = context.config
 

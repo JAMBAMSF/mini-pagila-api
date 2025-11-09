@@ -8,6 +8,6 @@ if str(root) not in sys.path:
 try:
     import pydantic.networks as _pydantic_networks
     from pydantic import AnyUrl
-    _pydantic_networks.Url = AnyUrl  # type: ignore[attr-defined]
+    _pydantic_networks.Url = AnyUrl                              
 except Exception:
     pass

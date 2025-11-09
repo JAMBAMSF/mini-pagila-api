@@ -71,7 +71,7 @@ class FilmRepository:
 
         items = [
             FilmOut(
-                film_id=film.film_id,  # type: ignore[arg-type]
+                film_id=film.film_id,                          
                 title=film.title,
                 description=film.description,
                 rating=film.rating,
@@ -125,7 +125,7 @@ class FilmRepository:
 
         film, category_name = row
         return FilmOut(
-            film_id=film.film_id,  # type: ignore[arg-type]
+            film_id=film.film_id,                          
             title=film.title,
             description=film.description,
             rating=film.rating,
@@ -154,7 +154,7 @@ class RentalRepository:
         customer_id: int,
         payload: RentalCreate,
     ) -> RentalCreatedResponse:
-        # Use naive UTC to match Pagila's TIMESTAMP WITHOUT TIME ZONE columns
+                                                                             
         now = datetime.utcnow()
         rental = Rental(
             rental_date=now,

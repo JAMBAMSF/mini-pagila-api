@@ -8,7 +8,7 @@ import pydantic.networks as _pydantic_networks
 from pydantic import AnyUrl
 
 if not hasattr(_pydantic_networks, "Url"):
-    _pydantic_networks.Url = AnyUrl  # type: ignore[attr-defined]
+    _pydantic_networks.Url = AnyUrl                              
 
 from .config import Settings
 
@@ -28,7 +28,7 @@ def get_kernel(settings: Settings):
     if not settings.openai_api_key:
         raise RuntimeError("OPENAI_API_KEY must be set to initialise the Semantic Kernel.")
 
-    # Local import to avoid import-time failures
+                                                
     from semantic_kernel import Kernel
     from semantic_kernel.functions.kernel_function import KernelFunction
     from semantic_kernel.functions.kernel_plugin_collection import KernelPluginCollection
@@ -39,7 +39,7 @@ def get_kernel(settings: Settings):
         KernelPluginCollection.model_rebuild()
         Kernel.model_rebuild()
     except Exception:
-        # Older versions may not require manual rebuilds.
+                                                         
         pass
 
     kernel = Kernel()
