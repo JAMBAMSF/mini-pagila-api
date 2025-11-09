@@ -223,21 +223,21 @@ class AIService:
                 question=question,
             ):
                 for piece in self._collect_text(chunk):
-                    piece = piece.strip()
-                    if piece:
-                        yield piece
+                    clean_piece = piece.replace("\r", "")
+                    if clean_piece.strip():
+                        yield clean_piece
             return
 
-        stream = await self._ask_prompt.invoke_stream_async(                              
+        stream = await self._ask_prompt.invoke_stream_async(
             kernel=kernel,
             arguments={"question": question},
             settings=settings,
         )
         async for message in stream:
             for piece in self._collect_text(message):
-                piece = piece.strip()
-                if piece:
-                    yield piece
+                clean_piece = piece.replace("\r", "")
+                if clean_piece.strip():
+                    yield clean_piece
 
     async def summary(self, film_id: int) -> SummaryOut:
         kernel = self._get_kernel()
